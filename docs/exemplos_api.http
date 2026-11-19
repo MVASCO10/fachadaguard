@@ -1,0 +1,95 @@
+# Exemplos de requisições (formato REST Client / IntelliJ HTTP). Valores de DEMONSTRAÇÃO.
+@api = http://localhost:8000
+@token = demo-token-troque
+
+### Saúde e prontidão
+GET {{api}}/health
+###
+GET {{api}}/ready
+
+### Cadastro do edifício fictício (idempotente)
+POST {{api}}/api/v1/demo/seed
+X-API-Token: {{token}}
+
+### Criar edifício
+POST {{api}}/api/v1/buildings
+X-API-Token: {{token}}
+Content-Type: application/json
+
+{"name": "Edifício Exemplo (fictício)", "latitude": -30.05, "longitude": -51.26, "is_synthetic": true}
+
+### Criar missão
+POST {{api}}/api/v1/missions
+X-API-Token: {{token}}
+Content-Type: application/json
+
+{"id": "msn-exemplo-01", "building_id": "bld-demo-atlantico", "drone_id": "drn-sim-01",
+ "name": "Missão de exemplo", "planned_for": "2026-11-20T13:00:00Z", "is_simulated": true}
+
+### Histórico completo da missão
+GET {{api}}/api/v1/missions/msn-demo-b
+
+### Telemetria (amostrada a cada 5 eventos)
+GET {{api}}/api/v1/missions/msn-demo-b/telemetry?every=5&limit=500
+
+### Upload binário associado a um evento MQTT de captura (mesmo event_id)
+POST {{api}}/api/v1/captures/0123456789abcdef0123456789abcdef/image
+X-API-Token: {{token}}
+Content-Type: multipart/form-data; boundary=b
+
+--b
+Content-Disposition: form-data; name="mission_id"
+
+msn-demo-b
+--b
+Content-Disposition: form-data; name="captured_at"
+
+2026-11-10T13:05:00Z
+--b
+Content-Disposition: form-data; name="file"; filename="foto.png"
+Content-Type: image/png
+
+< ./foto.png
+--b--
+
+### Inspeções, análises e achados filtrados
+GET {{api}}/api/v1/inspections?facade_id=fac-demo-norte
+###
+GET {{api}}/api/v1/analyses?status=succeeded
+###
+GET {{api}}/api/v1/findings?severity=critica&severity=alta&review_status=pendente
+
+### Reprocessar uma captura
+POST {{api}}/api/v1/captures/<capture_id>/analyses
+X-API-Token: {{token}}
+Content-Type: application/json
+
+{"force": true}
+
+### Revisão humana de um achado
+POST {{api}}/api/v1/findings/<finding_id>/review
+X-API-Token: {{token}}
+Content-Type: application/json
+
+{"status": "encaminhado_inspecao_tecnica", "note": "Solicitar vistoria presencial.", "reviewer": "eng-demo"}
+
+### Comparar duas inspeções da mesma região
+POST {{api}}/api/v1/comparisons
+X-API-Token: {{token}}
+Content-Type: application/json
+
+{"before_inspection_id": "<insp_maio>", "after_inspection_id": "<insp_novembro>"}
+
+### Relatório preliminar da missão
+POST {{api}}/api/v1/missions/msn-demo-b/reports
+X-API-Token: {{token}}
+
+### Analítica (DuckDB sobre Parquet)
+POST {{api}}/api/v1/analytics/export
+X-API-Token: {{token}}
+###
+GET {{api}}/api/v1/analytics/telemetry-by-mission
+###
+GET {{api}}/api/v1/analytics/anomalies-by-facade
+###
+GET {{api}}/api/v1/metrics/summary

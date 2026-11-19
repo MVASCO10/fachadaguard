@@ -1,0 +1,32 @@
+erDiagram
+  direction LR
+  BUILDING ||--o{ FACADE : possui
+  FACADE ||--o{ FACADE_REGION : divide
+  BUILDING ||--o{ MISSION : recebe
+  MISSION ||--o{ INSPECTION : contem
+  FACADE_REGION ||--o{ INSPECTION : "inspecionada em"
+  INSPECTION ||--o{ CAPTURE : registra
+  MISSION ||--o{ TELEMETRY_EVENT : "event_id único"
+  CAPTURE ||--o{ MODEL_RUN : "job de análise"
+  MODEL_RUN ||--o{ FINDING : gera
+  FINDING ||--o{ FINDING_REVIEW : "histórico de revisão"
+  FINDING ||--o| ALERT : "alta/crítica"
+  INSPECTION ||--o{ COMPARISON : "antes/depois"
+  MISSION ||--o{ REPORT : "relatório preliminar"
+  CAPTURE {
+    string event_id UK
+    string sha256
+    bool metadata_received
+    bool blob_received
+  }
+  MODEL_RUN {
+    string status "queued|running|succeeded|failed"
+    string model_version
+    string reference_set_hash
+  }
+  FINDING {
+    string candidate_category
+    string category_confidence
+    float severity_points
+    string review_status
+  }

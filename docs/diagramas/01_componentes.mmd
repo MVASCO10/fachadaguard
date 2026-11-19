@@ -1,0 +1,23 @@
+flowchart LR
+  D["<b>Drone (simulado)</b><br/>câmera + telemetria<br/>buffer local SQLite"]
+  M["<b>Mosquitto MQTT</b><br/>usuário/senha + ACL<br/>QoS 1 · TLS preparado"]
+  I["<b>Ingestor</b><br/>valida esquema v1<br/>lote idempotente<br/>ack após commit"]
+  A["<b>API FastAPI</b><br/>upload validado<br/>OpenAPI · token"]
+  P[("<b>PostgreSQL</b><br/>caminho operacional<br/>+ fila de jobs")]
+  S[("<b>Arquivos</b><br/>imagens · mapas<br/>relatórios")]
+  W["<b>Worker de IA</b><br/>kNN por patches<br/>categoria · comparação<br/>severidade"]
+  L[("<b>Lake Parquet</b><br/>dt / mission_id")]
+  Q["<b>DuckDB</b><br/>caminho analítico"]
+  U["<b>Dashboard</b><br/>Streamlit"]
+  H(["<b>Revisão humana</b><br/>profissional habilitado"])
+
+  D -->|"MQTT: telemetria,<br/>eventos de captura"| M --> I --> P
+  D -->|"HTTP: imagem"| A
+  A --> P
+  A --> S
+  P <-->|"jobs / achados"| W
+  W --> S
+  P -->|"exportação<br/>incremental"| L --> Q
+  U -->|"HTTP"| A
+  A -.->|"consultas"| Q
+  U --> H

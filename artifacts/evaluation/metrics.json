@@ -1,0 +1,291 @@
+{
+  "generated_at": "2026-11-19T01:50:11.127696+00:00",
+  "dataset": {
+    "type": "SINTÉTICO",
+    "generator": "synthfacade-1.2",
+    "split_seeds": {
+      "reference": 1001,
+      "dev": 2002,
+      "test": 3003,
+      "pairs": 4004
+    },
+    "n_reference": 90,
+    "n_test": 120,
+    "n_test_with_defect": 77,
+    "condition_groups": [
+      "nominal",
+      "iluminacao",
+      "desfoque_ruido"
+    ],
+    "warning": "Métricas sobre dados sintéticos não estimam desempenho em fachadas reais."
+  },
+  "model": {
+    "model_name": "patch-handcrafted-oneclass",
+    "model_version": "knn-ebda877d14",
+    "params": {
+      "patch": 32,
+      "stride": 16,
+      "detector": "knn",
+      "knn_bank_size": 30000,
+      "knn_k": 1,
+      "n_estimators": 300,
+      "max_samples": 2048,
+      "ocsvm_nu": 0.01,
+      "ocsvm_gamma": "scale",
+      "max_train_patches": 60000,
+      "calibration_fraction": 0.2,
+      "threshold_quantile": 0.99,
+      "smooth_sigma": 6.0,
+      "min_component_px": 500,
+      "seed": 42
+    },
+    "reference_set_hash": "evaluation",
+    "n_reference_images": 90,
+    "n_fit_images": 72,
+    "n_calibration_images": 18,
+    "n_fit_patches": 60000,
+    "n_calibration_patches": 20358,
+    "calibration_median": 1.2541452646255493,
+    "threshold_raw": 4.101459479331972
+  },
+  "operating_point": "índice ≥ 1,00 (quantil 0.990 das referências de calibração)",
+  "detection": {
+    "knn": {
+      "image_auroc": 0.9082,
+      "image_ap": 0.9276,
+      "pixel_auroc": 0.9405,
+      "image_tpr_at_threshold": 0.8701,
+      "image_fpr_at_threshold": 0.1628,
+      "seconds_per_image": 0.1737,
+      "by_condition": {
+        "nominal": {
+          "n": 40,
+          "image_auroc": 0.9687
+        },
+        "iluminacao": {
+          "n": 40,
+          "image_auroc": 0.9323
+        },
+        "desfoque_ruido": {
+          "n": 40,
+          "image_auroc": 0.8901
+        }
+      }
+    },
+    "iforest": {
+      "image_auroc": 0.7209,
+      "image_ap": 0.7845,
+      "pixel_auroc": 0.8938,
+      "image_tpr_at_threshold": 0.6234,
+      "image_fpr_at_threshold": 0.3488,
+      "seconds_per_image": 0.1466,
+      "by_condition": {
+        "nominal": {
+          "n": 40,
+          "image_auroc": 0.812
+        },
+        "iluminacao": {
+          "n": 40,
+          "image_auroc": 0.7917
+        },
+        "desfoque_ruido": {
+          "n": 40,
+          "image_auroc": 0.6071
+        }
+      }
+    },
+    "ocsvm": {
+      "image_auroc": 0.8801,
+      "image_ap": 0.9074,
+      "pixel_auroc": 0.8007,
+      "image_tpr_at_threshold": 0.8961,
+      "image_fpr_at_threshold": 0.4884,
+      "seconds_per_image": 0.1461,
+      "by_condition": {
+        "nominal": {
+          "n": 40,
+          "image_auroc": 0.943
+        },
+        "iluminacao": {
+          "n": 40,
+          "image_auroc": 0.8828
+        },
+        "desfoque_ruido": {
+          "n": 40,
+          "image_auroc": 0.8819
+        }
+      }
+    }
+  },
+  "localization_and_categorization": {
+    "defect_recall": {
+      "fissura": {
+        "detected": 25,
+        "total": 33,
+        "recall": 0.7576
+      },
+      "umidade_infiltracao": {
+        "detected": 4,
+        "total": 26,
+        "recall": 0.1538
+      },
+      "desplacamento_aparente": {
+        "detected": 38,
+        "total": 38,
+        "recall": 1.0
+      }
+    },
+    "defect_recall_by_condition": {
+      "desfoque_ruido": {
+        "fissura": "8/12",
+        "umidade_infiltracao": "0/9",
+        "desplacamento_aparente": "12/12"
+      },
+      "iluminacao": {
+        "fissura": "9/11",
+        "umidade_infiltracao": "2/5",
+        "desplacamento_aparente": "16/16"
+      },
+      "nominal": {
+        "fissura": "8/10",
+        "umidade_infiltracao": "2/12",
+        "desplacamento_aparente": "10/10"
+      }
+    },
+    "region_precision": 0.5929,
+    "regions_predicted": 140,
+    "categorization": {
+      "rows_true_label": [
+        "fissura",
+        "umidade_infiltracao",
+        "desplacamento_aparente",
+        "fundo (FP)"
+      ],
+      "cols_candidate": [
+        "fissura",
+        "umidade_infiltracao",
+        "desplacamento_aparente",
+        "indeterminado"
+      ],
+      "matrix": [
+        [
+          20,
+          1,
+          0,
+          9
+        ],
+        [
+          0,
+          6,
+          0,
+          3
+        ],
+        [
+          0,
+          1,
+          28,
+          15
+        ],
+        [
+          0,
+          22,
+          0,
+          35
+        ]
+      ],
+      "accuracy_on_true_defects_incl_indeterminado": 0.6506,
+      "indeterminado_rate_on_true_defects": 0.3253
+    }
+  },
+  "ablation_reference_without_illumination": {
+    "description": "Mesmo detector kNN, sem imagens de referência com sombra/iluminação extrema",
+    "n_reference": 60,
+    "image_auroc": 0.8049,
+    "image_fpr_at_threshold": 0.7442,
+    "by_condition": {
+      "nominal": {
+        "n": 40,
+        "image_auroc": 0.9658
+      },
+      "iluminacao": {
+        "n": 40,
+        "image_auroc": 0.7839
+      },
+      "desfoque_ruido": {
+        "n": 40,
+        "image_auroc": 0.8654
+      }
+    },
+    "defect_recall": {
+      "fissura": {
+        "detected": 30,
+        "total": 33,
+        "recall": 0.9091
+      },
+      "umidade_infiltracao": {
+        "detected": 23,
+        "total": 26,
+        "recall": 0.8846
+      },
+      "desplacamento_aparente": {
+        "detected": 38,
+        "total": 38,
+        "recall": 1.0
+      }
+    },
+    "region_precision": 0.2686
+  },
+  "temporal_comparison": {
+    "pairs": 40,
+    "status_by_kind": {
+      "deslocamento_pequeno": {
+        "ok": 10
+      },
+      "deslocamento_medio": {
+        "ok": 10
+      },
+      "deslocamento_grande": {
+        "ok": 8,
+        "alignment_failed": 2
+      },
+      "incompativel": {
+        "alignment_failed": 10
+      }
+    },
+    "false_alignment_on_incompatible": 0,
+    "change_contrast_defect_vs_background_median": 8.0079
+  },
+  "artifacts": [
+    "confusion_matrix.png",
+    "roc_image.png",
+    "comparison_example.png",
+    "fp_fn_summary.md",
+    "examples_acertos.png",
+    "examples_falsos_positivos.png",
+    "examples_falsos_negativos.png"
+  ],
+  "environment": {
+    "python": "3.12.13",
+    "platform": "macOS-15.3-arm64-arm-64bit",
+    "processor": "arm",
+    "config": {
+      "patch": 32,
+      "stride": 16,
+      "detector": "knn",
+      "knn_bank_size": 30000,
+      "knn_k": 1,
+      "n_estimators": 300,
+      "max_samples": 2048,
+      "ocsvm_nu": 0.01,
+      "ocsvm_gamma": "scale",
+      "max_train_patches": 60000,
+      "calibration_fraction": 0.2,
+      "threshold_quantile": 0.99,
+      "smooth_sigma": 6.0,
+      "min_component_px": 500,
+      "seed": 42
+    }
+  },
+  "duration_seconds": 138.6,
+  "quick_mode": false
+}

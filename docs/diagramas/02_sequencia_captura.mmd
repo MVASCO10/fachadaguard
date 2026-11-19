@@ -1,0 +1,31 @@
+sequenceDiagram
+  autonumber
+  participant D as Drone (simulado)
+  participant A as API
+  participant M as Mosquitto
+  participant I as Ingestor
+  participant P as PostgreSQL
+  participant W as Worker de IA
+  participant U as Dashboard / Revisor
+
+  D->>M: telemetria (QoS 1, event_id único)
+  M->>I: entrega (pode repetir)
+  I->>P: INSERT ... ON CONFLICT (event_id) DO NOTHING
+  I-->>M: PUBACK somente após commit
+  D->>A: POST /captures/{event_id}/image (PNG/JPEG)
+  A->>A: valida tipo, tamanho, conteúdo, SHA-256
+  A->>P: captura (binário recebido)
+  D->>M: evento de captura (metadados + SHA-256)
+  M->>I: entrega
+  I->>P: associa missão, região e inspeção · confere hash
+  I->>P: cria job "queued" (metadados + binário presentes)
+  W->>P: reserva job (FOR UPDATE SKIP LOCKED) → running
+  W->>W: qualidade · patches · kNN · mapa de calor · componentes
+  W->>W: categoria candidata (heurística)
+  W->>P: busca inspeção anterior da mesma região
+  W->>W: alinhamento ORB/ECC · SSIM · crescimento
+  W->>W: severidade explicável (0–100)
+  W->>P: achados, comparação, alerta (alta/crítica) → succeeded
+  U->>P: consulta via API
+  U->>P: revisão: confirmado / descartado / encaminhado
+  Note over U: nenhuma ação física automática

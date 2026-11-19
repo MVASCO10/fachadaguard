@@ -1,0 +1,63 @@
+# CI do FachadaGuard. Passa a valer quando esta pasta for a raiz de um repositório GitHub.
+name: ci
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Instalar dependências
+        run: python -m pip install -U pip && pip install -e ".[dashboard,eval,dev]" pip-audit
+      - name: Lint (ruff)
+        run: ruff check . && ruff format --check .
+      - name: Tipagem (mypy)
+        run: mypy
+      - name: Testes (unitários + integração local com SQLite) e cobertura
+        run: pytest --cov --cov-report=term-missing:skip-covered --cov-fail-under=85
+      - name: Avaliação reduzida (sanidade do pipeline de IA)
+        run: python scripts/evaluate.py --quick
+      - name: Auditoria de dependências
+        run: pip-audit --progress-spinner off || echo "::warning::pip-audit encontrou alertas; revisar"
+
+  secrets-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  docker-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs: quality
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Subir stack
+        run: cp .env.example .env && docker compose up -d --build --wait
+      - name: Missão simulada A
+        run: docker compose run --rm simulator mission --epoch A --speed 0
+      - name: Aguardar análises
+        run: docker compose run --rm --entrypoint python simulator scripts/demo_steps.py wait --expected 6
+      - name: Smoke test
+        run: pip install -e ".[dev]" && pytest -m integration tests/e2e -v
+      - name: Logs em caso de falha
+        if: failure()
+        run: docker compose logs --tail=200

@@ -1,0 +1,950 @@
+{
+  "generated_at": "2026-11-19T14:05:18.546640+00:00",
+  "synthetic": true,
+  "model_version": "knn-c27b1d1dd1",
+  "metrics": {
+    "buildings": 1,
+    "missions": 2,
+    "inspections": 12,
+    "telemetry_events": 100758,
+    "telemetry_last_5min": 100758,
+    "captures": 12,
+    "captures_analyzed": 12,
+    "jobs": {
+      "succeeded": 12
+    },
+    "findings": 8,
+    "findings_by_severity": {
+      "media": 1,
+      "critica": 2,
+      "baixa": 5
+    },
+    "findings_by_review": {
+      "pendente": 8
+    },
+    "alerts_open": 2,
+    "dead_letters": 0,
+    "comparisons": 6,
+    "reports": 2
+  },
+  "missions": [
+    {
+      "id": "msn-demo-b",
+      "building_id": "bld-demo-atlantico",
+      "drone_id": "drn-sim-01",
+      "name": "Inspeção semestral novembro/2026 (SIMULADA)",
+      "status": "completed",
+      "is_simulated": true,
+      "planned_for": "2026-11-10T13:00:00Z",
+      "started_at": "2026-11-10T13:00:00.500000Z",
+      "ended_at": "2026-11-10T13:02:19.500000Z",
+      "notes": "Missão gerada pelo simulador; dados sintéticos.",
+      "created_at": "2026-11-19T14:04:33.107079Z",
+      "telemetry_events": 279,
+      "captures": 6,
+      "open_alerts": 2
+    },
+    {
+      "id": "msn-demo-a",
+      "building_id": "bld-demo-atlantico",
+      "drone_id": "drn-sim-01",
+      "name": "Inspeção semestral maio/2026 (SIMULADA)",
+      "status": "completed",
+      "is_simulated": true,
+      "planned_for": "2026-05-12T13:00:00Z",
+      "started_at": "2026-05-12T13:00:00.500000Z",
+      "ended_at": "2026-05-12T13:02:19.500000Z",
+      "notes": "Missão gerada pelo simulador; dados sintéticos.",
+      "created_at": "2026-11-19T14:04:20.948242Z",
+      "telemetry_events": 279,
+      "captures": 6,
+      "open_alerts": 0
+    }
+  ],
+  "regions": [
+    {
+      "region": "N-01",
+      "facade": "Fachada Norte",
+      "mission": "msn-demo-a",
+      "inspected_at": "2026-05-12T13:00:35Z",
+      "image_index": 1.8934,
+      "anomalous_area_ratio": 0.01789,
+      "duration_ms": 184.2,
+      "n_findings": 1,
+      "quality": 1.0,
+      "image": "img/demo_N-01_A_original.png",
+      "overlay": "img/demo_N-01_A_heatmap.png",
+      "comparison": null
+    },
+    {
+      "region": "N-02",
+      "facade": "Fachada Norte",
+      "mission": "msn-demo-a",
+      "inspected_at": "2026-05-12T13:00:49Z",
+      "image_index": 0.4121,
+      "anomalous_area_ratio": 0.0,
+      "duration_ms": 174.4,
+      "n_findings": 0,
+      "quality": 0.887,
+      "image": "img/demo_N-02_A_original.png",
+      "overlay": "img/demo_N-02_A_heatmap.png",
+      "comparison": null
+    },
+    {
+      "region": "N-03",
+      "facade": "Fachada Norte",
+      "mission": "msn-demo-a",
+      "inspected_at": "2026-05-12T13:01:03Z",
+      "image_index": 0.9136,
+      "anomalous_area_ratio": 0.0,
+      "duration_ms": 176.8,
+      "n_findings": 0,
+      "quality": 1.0,
+      "image": "img/demo_N-03_A_original.png",
+      "overlay": "img/demo_N-03_A_heatmap.png",
+      "comparison": null
+    },
+    {
+      "region": "L-01",
+      "facade": "Fachada Leste",
+      "mission": "msn-demo-a",
+      "inspected_at": "2026-05-12T13:01:21Z",
+      "image_index": 0.864,
+      "anomalous_area_ratio": 0.0,
+      "duration_ms": 176.2,
+      "n_findings": 0,
+      "quality": 0.858,
+      "image": "img/demo_L-01_A_original.png",
+      "overlay": "img/demo_L-01_A_heatmap.png",
+      "comparison": null
+    },
+    {
+      "region": "L-02",
+      "facade": "Fachada Leste",
+      "mission": "msn-demo-a",
+      "inspected_at": "2026-05-12T13:01:32.500000Z",
+      "image_index": 1.553,
+      "anomalous_area_ratio": 0.00993,
+      "duration_ms": 187.5,
+      "n_findings": 2,
+      "quality": 0.962,
+      "image": "img/demo_L-02_A_original.png",
+      "overlay": "img/demo_L-02_A_heatmap.png",
+      "comparison": null
+    },
+    {
+      "region": "L-03",
+      "facade": "Fachada Leste",
+      "mission": "msn-demo-a",
+      "inspected_at": "2026-05-12T13:01:44Z",
+      "image_index": 0.9798,
+      "anomalous_area_ratio": 0.0,
+      "duration_ms": 174.1,
+      "n_findings": 0,
+      "quality": 0.973,
+      "image": "img/demo_L-03_A_original.png",
+      "overlay": "img/demo_L-03_A_heatmap.png",
+      "comparison": null
+    },
+    {
+      "region": "N-01",
+      "facade": "Fachada Norte",
+      "mission": "msn-demo-b",
+      "inspected_at": "2026-11-10T13:00:35Z",
+      "image_index": 1.9975,
+      "anomalous_area_ratio": 0.0429,
+      "duration_ms": 291.8,
+      "n_findings": 2,
+      "quality": 1.0,
+      "image": "img/demo_N-01_B_original.png",
+      "overlay": "img/demo_N-01_B_heatmap.png",
+      "comparison": {
+        "status": "ok",
+        "method": "orb_homography",
+        "inliers": 474.0,
+        "ssim": 0.9619032686682248,
+        "changed_area_ratio": 0.019508913555331315,
+        "interval_days": 182.0,
+        "area_before": 0.01789,
+        "area_after": 0.0429,
+        "overlay": "img/demo_N-01_B_mudanca.png"
+      }
+    },
+    {
+      "region": "N-02",
+      "facade": "Fachada Norte",
+      "mission": "msn-demo-b",
+      "inspected_at": "2026-11-10T13:00:49Z",
+      "image_index": 0.1675,
+      "anomalous_area_ratio": 0.0,
+      "duration_ms": 259.7,
+      "n_findings": 0,
+      "quality": 0.872,
+      "image": "img/demo_N-02_B_original.png",
+      "overlay": "img/demo_N-02_B_heatmap.png",
+      "comparison": {
+        "status": "ok",
+        "method": "orb_homography",
+        "inliers": 268.0,
+        "ssim": 0.9593214640983163,
+        "changed_area_ratio": 0.000164553221213261,
+        "interval_days": 182.0,
+        "area_before": 0.0,
+        "area_after": 0.0,
+        "overlay": "img/demo_N-02_B_mudanca.png"
+      }
+    },
+    {
+      "region": "N-03",
+      "facade": "Fachada Norte",
+      "mission": "msn-demo-b",
+      "inspected_at": "2026-11-10T13:01:03Z",
+      "image_index": 1.0601,
+      "anomalous_area_ratio": 0.0,
+      "duration_ms": 245.7,
+      "n_findings": 0,
+      "quality": 1.0,
+      "image": "img/demo_N-03_B_original.png",
+      "overlay": "img/demo_N-03_B_heatmap.png",
+      "comparison": {
+        "status": "ok",
+        "method": "orb_homography",
+        "inliers": 333.0,
+        "ssim": 0.9643281482589716,
+        "changed_area_ratio": 0.002828621206923227,
+        "interval_days": 182.0,
+        "area_before": 0.0,
+        "area_after": 0.0,
+        "overlay": "img/demo_N-03_B_mudanca.png"
+      }
+    },
+    {
+      "region": "L-01",
+      "facade": "Fachada Leste",
+      "mission": "msn-demo-b",
+      "inspected_at": "2026-11-10T13:01:21Z",
+      "image_index": 2.9414,
+      "anomalous_area_ratio": 0.02556,
+      "duration_ms": 247.9,
+      "n_findings": 1,
+      "quality": 0.846,
+      "image": "img/demo_L-01_B_original.png",
+      "overlay": "img/demo_L-01_B_heatmap.png",
+      "comparison": {
+        "status": "ok",
+        "method": "orb_homography",
+        "inliers": 214.0,
+        "ssim": 0.9637748577062776,
+        "changed_area_ratio": 0.019227404855466437,
+        "interval_days": 182.0,
+        "area_before": 0.0,
+        "area_after": 0.02556,
+        "overlay": "img/demo_L-01_B_mudanca.png"
+      }
+    },
+    {
+      "region": "L-02",
+      "facade": "Fachada Leste",
+      "mission": "msn-demo-b",
+      "inspected_at": "2026-11-10T13:01:32.500000Z",
+      "image_index": 1.5959,
+      "anomalous_area_ratio": 0.01053,
+      "duration_ms": 260.3,
+      "n_findings": 2,
+      "quality": 0.945,
+      "image": "img/demo_L-02_B_original.png",
+      "overlay": "img/demo_L-02_B_heatmap.png",
+      "comparison": {
+        "status": "ok",
+        "method": "orb_homography",
+        "inliers": 606.0,
+        "ssim": 0.9726188264212725,
+        "changed_area_ratio": 5.04649504097754e-05,
+        "interval_days": 182.0,
+        "area_before": 0.00993,
+        "area_after": 0.01053,
+        "overlay": "img/demo_L-02_B_mudanca.png"
+      }
+    },
+    {
+      "region": "L-03",
+      "facade": "Fachada Leste",
+      "mission": "msn-demo-b",
+      "inspected_at": "2026-11-10T13:01:44Z",
+      "image_index": 0.9848,
+      "anomalous_area_ratio": 0.0,
+      "duration_ms": 239.2,
+      "n_findings": 0,
+      "quality": 1.0,
+      "image": "img/demo_L-03_B_original.png",
+      "overlay": "img/demo_L-03_B_heatmap.png",
+      "comparison": {
+        "status": "ok",
+        "method": "orb_homography",
+        "inliers": 187.0,
+        "ssim": 0.6990229535432199,
+        "changed_area_ratio": 0.2756478917833781,
+        "interval_days": 182.0,
+        "area_before": 0.0,
+        "area_after": 0.0,
+        "overlay": "img/demo_L-03_B_mudanca.png"
+      }
+    }
+  ],
+  "findings": [
+    {
+      "id": "fnd_5db15b1264114fd8",
+      "model_run_id": "run_ad44f2c29b974092",
+      "capture_id": "cap_caf5bccaaa5a484c",
+      "inspection_id": "ins_050186edc54049eb",
+      "region_id": "reg-demo-n-01",
+      "bbox": {
+        "x": 110,
+        "y": 44,
+        "w": 177,
+        "h": 238
+      },
+      "area_px": 12662,
+      "area_ratio": 0.04122,
+      "peak_index": 1.9975,
+      "candidate_category": "fissura",
+      "category_confidence": "alta",
+      "growth_ratio": 1.214,
+      "severity_points": 75.5,
+      "severity_level": "critica",
+      "review_status": "pendente",
+      "created_at": "2026-11-19T14:04:35.546560Z",
+      "severity_summary": "Severidade preliminar CRITICA (76/100). Principais fatores: região ocupa 4.12% da imagem (25 pts a partir de 4%) (+25); variação de área de +121% desde a inspeção anterior (+25); índice de pico 2.00 (1,00 = limiar calibrado em referências normais) (+18).",
+      "inspected_at": "2026-11-10T13:00:35Z",
+      "mission_id": "msn-demo-b",
+      "region_code": "N-01",
+      "facade_id": "fac-demo-norte",
+      "facade_name": "Fachada Norte",
+      "detail": {
+        "rule_version": "severidade-1.0",
+        "points": 75.5,
+        "level": "critica",
+        "contributions": [
+          {
+            "fator": "intensidade_anomalia",
+            "valor": 1.997,
+            "pontos": 17.5,
+            "explicacao": "índice de pico 2.00 (1,00 = limiar calibrado em referências normais)"
+          },
+          {
+            "fator": "area_relativa",
+            "valor": 0.0412,
+            "pontos": 25.0,
+            "explicacao": "região ocupa 4.12% da imagem (25 pts a partir de 4%)"
+          },
+          {
+            "fator": "crescimento_temporal",
+            "valor": 1.214,
+            "pontos": 25.0,
+            "explicacao": "variação de área de +121% desde a inspeção anterior"
+          },
+          {
+            "fator": "categoria_candidata",
+            "valor": "fissura",
+            "pontos": 8.0,
+            "explicacao": "categoria candidata 'fissura' (confiança heurística alta)"
+          },
+          {
+            "fator": "qualidade_evidencia",
+            "valor": 1.0,
+            "pontos": null,
+            "explicacao": "multiplicador 1.00 sobre 75.5 pontos brutos"
+          }
+        ],
+        "notes": [],
+        "is_new": false,
+        "has_history": true,
+        "summary": "Severidade preliminar CRITICA (76/100). Principais fatores: região ocupa 4.12% da imagem (25 pts a partir de 4%) (+25); variação de área de +121% desde a inspeção anterior (+25); índice de pico 2.00 (1,00 = limiar calibrado em referências normais) (+18)."
+      }
+    },
+    {
+      "id": "fnd_d1b2fd52204e4a6a",
+      "model_run_id": "run_2e975353f9084272",
+      "capture_id": "cap_d613362ed2c945b6",
+      "inspection_id": "ins_851ad3ac843d4728",
+      "region_id": "reg-demo-l-01",
+      "bbox": {
+        "x": 365,
+        "y": 205,
+        "w": 84,
+        "h": 124
+      },
+      "area_px": 7851,
+      "area_ratio": 0.02556,
+      "peak_index": 2.9414,
+      "candidate_category": "desplacamento_aparente",
+      "category_confidence": "media",
+      "growth_ratio": null,
+      "severity_points": 75.0,
+      "severity_level": "critica",
+      "review_status": "pendente",
+      "created_at": "2026-11-19T14:04:37.321587Z",
+      "severity_summary": "Severidade preliminar CRITICA (75/100). Principais fatores: índice de pico 2.94 (1,00 = limiar calibrado em referências normais) (+34); região ocupa 2.56% da imagem (25 pts a partir de 4%) (+16); região alterada ausente na inspeção anterior (achado novo) (+15).",
+      "inspected_at": "2026-11-10T13:01:21Z",
+      "mission_id": "msn-demo-b",
+      "region_code": "L-01",
+      "facade_id": "fac-demo-leste",
+      "facade_name": "Fachada Leste",
+      "detail": {
+        "rule_version": "severidade-1.0",
+        "points": 75.0,
+        "level": "critica",
+        "contributions": [
+          {
+            "fator": "intensidade_anomalia",
+            "valor": 2.941,
+            "pontos": 34.0,
+            "explicacao": "índice de pico 2.94 (1,00 = limiar calibrado em referências normais)"
+          },
+          {
+            "fator": "area_relativa",
+            "valor": 0.0256,
+            "pontos": 16.0,
+            "explicacao": "região ocupa 2.56% da imagem (25 pts a partir de 4%)"
+          },
+          {
+            "fator": "crescimento_temporal",
+            "valor": null,
+            "pontos": 15.0,
+            "explicacao": "região alterada ausente na inspeção anterior (achado novo)"
+          },
+          {
+            "fator": "categoria_candidata",
+            "valor": "desplacamento_aparente",
+            "pontos": 15.0,
+            "explicacao": "categoria candidata 'desplacamento_aparente' (confiança heurística media)"
+          },
+          {
+            "fator": "qualidade_evidencia",
+            "valor": 0.846,
+            "pontos": null,
+            "explicacao": "multiplicador 0.94 sobre 79.9 pontos brutos"
+          }
+        ],
+        "notes": [],
+        "is_new": true,
+        "has_history": true,
+        "summary": "Severidade preliminar CRITICA (75/100). Principais fatores: índice de pico 2.94 (1,00 = limiar calibrado em referências normais) (+34); região ocupa 2.56% da imagem (25 pts a partir de 4%) (+16); região alterada ausente na inspeção anterior (achado novo) (+15)."
+      }
+    },
+    {
+      "id": "fnd_ac0e006d666341bf",
+      "model_run_id": "run_3c21b44b54884975",
+      "capture_id": "cap_02e659d4547847d2",
+      "inspection_id": "ins_f510c1929c3f47e1",
+      "region_id": "reg-demo-n-01",
+      "bbox": {
+        "x": 156,
+        "y": 193,
+        "w": 118,
+        "h": 99
+      },
+      "area_px": 5495,
+      "area_ratio": 0.01789,
+      "peak_index": 1.8934,
+      "candidate_category": "fissura",
+      "category_confidence": "media",
+      "growth_ratio": null,
+      "severity_points": 34.8,
+      "severity_level": "media",
+      "review_status": "pendente",
+      "created_at": "2026-11-19T14:04:30.312476Z",
+      "severity_summary": "Severidade preliminar MEDIA (35/100). Principais fatores: índice de pico 1.89 (1,00 = limiar calibrado em referências normais) (+16); região ocupa 1.79% da imagem (25 pts a partir de 4%) (+11); categoria candidata 'fissura' (confiança heurística media) (+8).",
+      "inspected_at": "2026-05-12T13:00:35Z",
+      "mission_id": "msn-demo-a",
+      "region_code": "N-01",
+      "facade_id": "fac-demo-norte",
+      "facade_name": "Fachada Norte",
+      "detail": {
+        "rule_version": "severidade-1.0",
+        "points": 34.8,
+        "level": "media",
+        "contributions": [
+          {
+            "fator": "intensidade_anomalia",
+            "valor": 1.893,
+            "pontos": 15.6,
+            "explicacao": "índice de pico 1.89 (1,00 = limiar calibrado em referências normais)"
+          },
+          {
+            "fator": "area_relativa",
+            "valor": 0.0179,
+            "pontos": 11.2,
+            "explicacao": "região ocupa 1.79% da imagem (25 pts a partir de 4%)"
+          },
+          {
+            "fator": "crescimento_temporal",
+            "valor": null,
+            "pontos": 0.0,
+            "explicacao": "sem inspeção anterior comparável desta região"
+          },
+          {
+            "fator": "categoria_candidata",
+            "valor": "fissura",
+            "pontos": 8.0,
+            "explicacao": "categoria candidata 'fissura' (confiança heurística media)"
+          },
+          {
+            "fator": "qualidade_evidencia",
+            "valor": 1.0,
+            "pontos": null,
+            "explicacao": "multiplicador 1.00 sobre 34.8 pontos brutos"
+          }
+        ],
+        "notes": [
+          "Sem histórico: crescimento não avaliado."
+        ],
+        "is_new": false,
+        "has_history": false,
+        "summary": "Severidade preliminar MEDIA (35/100). Principais fatores: índice de pico 1.89 (1,00 = limiar calibrado em referências normais) (+16); região ocupa 1.79% da imagem (25 pts a partir de 4%) (+11); categoria candidata 'fissura' (confiança heurística media) (+8)."
+      }
+    },
+    {
+      "id": "fnd_8e251d87b7a8483a",
+      "model_run_id": "run_8b47bfbac9654082",
+      "capture_id": "cap_42f70eff56f44a9f",
+      "inspection_id": "ins_17242413be364988",
+      "region_id": "reg-demo-l-02",
+      "bbox": {
+        "x": 335,
+        "y": 166,
+        "w": 80,
+        "h": 43
+      },
+      "area_px": 2521,
+      "area_ratio": 0.00821,
+      "peak_index": 1.5959,
+      "candidate_category": "umidade_infiltracao",
+      "category_confidence": "alta",
+      "growth_ratio": 0.238,
+      "severity_points": 25.9,
+      "severity_level": "baixa",
+      "review_status": "pendente",
+      "created_at": "2026-11-19T14:04:37.583884Z",
+      "severity_summary": "Severidade preliminar BAIXA (26/100). Principais fatores: índice de pico 1.60 (1,00 = limiar calibrado em referências normais) (+10); variação de área de +24% desde a inspeção anterior (+6); região ocupa 0.82% da imagem (25 pts a partir de 4%) (+5).",
+      "inspected_at": "2026-11-10T13:01:32.500000Z",
+      "mission_id": "msn-demo-b",
+      "region_code": "L-02",
+      "facade_id": "fac-demo-leste",
+      "facade_name": "Fachada Leste",
+      "detail": {
+        "rule_version": "severidade-1.0",
+        "points": 25.9,
+        "level": "baixa",
+        "contributions": [
+          {
+            "fator": "intensidade_anomalia",
+            "valor": 1.596,
+            "pontos": 10.4,
+            "explicacao": "índice de pico 1.60 (1,00 = limiar calibrado em referências normais)"
+          },
+          {
+            "fator": "area_relativa",
+            "valor": 0.0082,
+            "pontos": 5.1,
+            "explicacao": "região ocupa 0.82% da imagem (25 pts a partir de 4%)"
+          },
+          {
+            "fator": "crescimento_temporal",
+            "valor": 0.238,
+            "pontos": 5.9,
+            "explicacao": "variação de área de +24% desde a inspeção anterior"
+          },
+          {
+            "fator": "categoria_candidata",
+            "valor": "umidade_infiltracao",
+            "pontos": 5.0,
+            "explicacao": "categoria candidata 'umidade_infiltracao' (confiança heurística alta)"
+          },
+          {
+            "fator": "qualidade_evidencia",
+            "valor": 0.945,
+            "pontos": null,
+            "explicacao": "multiplicador 0.98 sobre 26.5 pontos brutos"
+          }
+        ],
+        "notes": [],
+        "is_new": false,
+        "has_history": true,
+        "summary": "Severidade preliminar BAIXA (26/100). Principais fatores: índice de pico 1.60 (1,00 = limiar calibrado em referências normais) (+10); variação de área de +24% desde a inspeção anterior (+6); região ocupa 0.82% da imagem (25 pts a partir de 4%) (+5)."
+      }
+    },
+    {
+      "id": "fnd_4cbce072885f4bdc",
+      "model_run_id": "run_8b47bfbac9654082",
+      "capture_id": "cap_42f70eff56f44a9f",
+      "inspection_id": "ins_17242413be364988",
+      "region_id": "reg-demo-l-02",
+      "bbox": {
+        "x": 271,
+        "y": 171,
+        "w": 32,
+        "h": 29
+      },
+      "area_px": 713,
+      "area_ratio": 0.00232,
+      "peak_index": 1.2419,
+      "candidate_category": "umidade_infiltracao",
+      "category_confidence": "alta",
+      "growth_ratio": null,
+      "severity_points": 25.1,
+      "severity_level": "baixa",
+      "review_status": "pendente",
+      "created_at": "2026-11-19T14:04:37.584455Z",
+      "severity_summary": "Severidade preliminar BAIXA (25/100). Principais fatores: região alterada ausente na inspeção anterior (achado novo) (+15); categoria candidata 'umidade_infiltracao' (confiança heurística alta) (+5); índice de pico 1.24 (1,00 = limiar calibrado em referências normais) (+4).",
+      "inspected_at": "2026-11-10T13:01:32.500000Z",
+      "mission_id": "msn-demo-b",
+      "region_code": "L-02",
+      "facade_id": "fac-demo-leste",
+      "facade_name": "Fachada Leste",
+      "detail": {
+        "rule_version": "severidade-1.0",
+        "points": 25.1,
+        "level": "baixa",
+        "contributions": [
+          {
+            "fator": "intensidade_anomalia",
+            "valor": 1.242,
+            "pontos": 4.2,
+            "explicacao": "índice de pico 1.24 (1,00 = limiar calibrado em referências normais)"
+          },
+          {
+            "fator": "area_relativa",
+            "valor": 0.0023,
+            "pontos": 1.5,
+            "explicacao": "região ocupa 0.23% da imagem (25 pts a partir de 4%)"
+          },
+          {
+            "fator": "crescimento_temporal",
+            "valor": null,
+            "pontos": 15.0,
+            "explicacao": "região alterada ausente na inspeção anterior (achado novo)"
+          },
+          {
+            "fator": "categoria_candidata",
+            "valor": "umidade_infiltracao",
+            "pontos": 5.0,
+            "explicacao": "categoria candidata 'umidade_infiltracao' (confiança heurística alta)"
+          },
+          {
+            "fator": "qualidade_evidencia",
+            "valor": 0.945,
+            "pontos": null,
+            "explicacao": "multiplicador 0.98 sobre 25.7 pontos brutos"
+          }
+        ],
+        "notes": [],
+        "is_new": true,
+        "has_history": true,
+        "summary": "Severidade preliminar BAIXA (25/100). Principais fatores: região alterada ausente na inspeção anterior (achado novo) (+15); categoria candidata 'umidade_infiltracao' (confiança heurística alta) (+5); índice de pico 1.24 (1,00 = limiar calibrado em referências normais) (+4)."
+      }
+    },
+    {
+      "id": "fnd_ab2fb2ff517e4748",
+      "model_run_id": "run_ad44f2c29b974092",
+      "capture_id": "cap_caf5bccaaa5a484c",
+      "inspection_id": "ins_050186edc54049eb",
+      "region_id": "reg-demo-n-01",
+      "bbox": {
+        "x": 284,
+        "y": 0,
+        "w": 18,
+        "h": 31
+      },
+      "area_px": 518,
+      "area_ratio": 0.00169,
+      "peak_index": 1.1365,
+      "candidate_category": "umidade_infiltracao",
+      "category_confidence": "media",
+      "growth_ratio": null,
+      "severity_points": 23.4,
+      "severity_level": "baixa",
+      "review_status": "pendente",
+      "created_at": "2026-11-19T14:04:35.547896Z",
+      "severity_summary": "Severidade preliminar BAIXA (23/100). Principais fatores: região alterada ausente na inspeção anterior (achado novo) (+15); categoria candidata 'umidade_infiltracao' (confiança heurística media) (+5); índice de pico 1.14 (1,00 = limiar calibrado em referências normais) (+2).",
+      "inspected_at": "2026-11-10T13:00:35Z",
+      "mission_id": "msn-demo-b",
+      "region_code": "N-01",
+      "facade_id": "fac-demo-norte",
+      "facade_name": "Fachada Norte",
+      "detail": {
+        "rule_version": "severidade-1.0",
+        "points": 23.4,
+        "level": "baixa",
+        "contributions": [
+          {
+            "fator": "intensidade_anomalia",
+            "valor": 1.137,
+            "pontos": 2.4,
+            "explicacao": "índice de pico 1.14 (1,00 = limiar calibrado em referências normais)"
+          },
+          {
+            "fator": "area_relativa",
+            "valor": 0.0017,
+            "pontos": 1.1,
+            "explicacao": "região ocupa 0.17% da imagem (25 pts a partir de 4%)"
+          },
+          {
+            "fator": "crescimento_temporal",
+            "valor": null,
+            "pontos": 15.0,
+            "explicacao": "região alterada ausente na inspeção anterior (achado novo)"
+          },
+          {
+            "fator": "categoria_candidata",
+            "valor": "umidade_infiltracao",
+            "pontos": 5.0,
+            "explicacao": "categoria candidata 'umidade_infiltracao' (confiança heurística media)"
+          },
+          {
+            "fator": "qualidade_evidencia",
+            "valor": 1.0,
+            "pontos": null,
+            "explicacao": "multiplicador 1.00 sobre 23.4 pontos brutos"
+          }
+        ],
+        "notes": [],
+        "is_new": true,
+        "has_history": true,
+        "summary": "Severidade preliminar BAIXA (23/100). Principais fatores: região alterada ausente na inspeção anterior (achado novo) (+15); categoria candidata 'umidade_infiltracao' (confiança heurística media) (+5); índice de pico 1.14 (1,00 = limiar calibrado em referências normais) (+2)."
+      }
+    },
+    {
+      "id": "fnd_284be844c8614182",
+      "model_run_id": "run_1b8468a48cc144c4",
+      "capture_id": "cap_d9901d0590e94e24",
+      "inspection_id": "ins_47e74ccacdb045e6",
+      "region_id": "reg-demo-l-02",
+      "bbox": {
+        "x": 334,
+        "y": 169,
+        "w": 56,
+        "h": 43
+      },
+      "area_px": 1941,
+      "area_ratio": 0.00632,
+      "peak_index": 1.553,
+      "candidate_category": "umidade_infiltracao",
+      "category_confidence": "media",
+      "growth_ratio": null,
+      "severity_points": 18.3,
+      "severity_level": "baixa",
+      "review_status": "pendente",
+      "created_at": "2026-11-19T14:04:31.035853Z",
+      "severity_summary": "Severidade preliminar BAIXA (18/100). Principais fatores: índice de pico 1.55 (1,00 = limiar calibrado em referências normais) (+10); categoria candidata 'umidade_infiltracao' (confiança heurística media) (+5); região ocupa 0.63% da imagem (25 pts a partir de 4%) (+4).",
+      "inspected_at": "2026-05-12T13:01:32.500000Z",
+      "mission_id": "msn-demo-a",
+      "region_code": "L-02",
+      "facade_id": "fac-demo-leste",
+      "facade_name": "Fachada Leste",
+      "detail": {
+        "rule_version": "severidade-1.0",
+        "points": 18.3,
+        "level": "baixa",
+        "contributions": [
+          {
+            "fator": "intensidade_anomalia",
+            "valor": 1.553,
+            "pontos": 9.7,
+            "explicacao": "índice de pico 1.55 (1,00 = limiar calibrado em referências normais)"
+          },
+          {
+            "fator": "area_relativa",
+            "valor": 0.0063,
+            "pontos": 3.9,
+            "explicacao": "região ocupa 0.63% da imagem (25 pts a partir de 4%)"
+          },
+          {
+            "fator": "crescimento_temporal",
+            "valor": null,
+            "pontos": 0.0,
+            "explicacao": "sem inspeção anterior comparável desta região"
+          },
+          {
+            "fator": "categoria_candidata",
+            "valor": "umidade_infiltracao",
+            "pontos": 5.0,
+            "explicacao": "categoria candidata 'umidade_infiltracao' (confiança heurística media)"
+          },
+          {
+            "fator": "qualidade_evidencia",
+            "valor": 0.962,
+            "pontos": null,
+            "explicacao": "multiplicador 0.98 sobre 18.6 pontos brutos"
+          }
+        ],
+        "notes": [
+          "Sem histórico: crescimento não avaliado."
+        ],
+        "is_new": false,
+        "has_history": false,
+        "summary": "Severidade preliminar BAIXA (18/100). Principais fatores: índice de pico 1.55 (1,00 = limiar calibrado em referências normais) (+10); categoria candidata 'umidade_infiltracao' (confiança heurística media) (+5); região ocupa 0.63% da imagem (25 pts a partir de 4%) (+4)."
+      }
+    },
+    {
+      "id": "fnd_c78f2cfc1b00448d",
+      "model_run_id": "run_1b8468a48cc144c4",
+      "capture_id": "cap_d9901d0590e94e24",
+      "inspection_id": "ins_47e74ccacdb045e6",
+      "region_id": "reg-demo-l-02",
+      "bbox": {
+        "x": 216,
+        "y": 238,
+        "w": 45,
+        "h": 44
+      },
+      "area_px": 1111,
+      "area_ratio": 0.00362,
+      "peak_index": 1.303,
+      "candidate_category": "fissura",
+      "category_confidence": "alta",
+      "growth_ratio": null,
+      "severity_points": 15.3,
+      "severity_level": "baixa",
+      "review_status": "pendente",
+      "created_at": "2026-11-19T14:04:31.036318Z",
+      "severity_summary": "Severidade preliminar BAIXA (15/100). Principais fatores: categoria candidata 'fissura' (confiança heurística alta) (+8); índice de pico 1.30 (1,00 = limiar calibrado em referências normais) (+5); região ocupa 0.36% da imagem (25 pts a partir de 4%) (+2).",
+      "inspected_at": "2026-05-12T13:01:32.500000Z",
+      "mission_id": "msn-demo-a",
+      "region_code": "L-02",
+      "facade_id": "fac-demo-leste",
+      "facade_name": "Fachada Leste",
+      "detail": {
+        "rule_version": "severidade-1.0",
+        "points": 15.3,
+        "level": "baixa",
+        "contributions": [
+          {
+            "fator": "intensidade_anomalia",
+            "valor": 1.303,
+            "pontos": 5.3,
+            "explicacao": "índice de pico 1.30 (1,00 = limiar calibrado em referências normais)"
+          },
+          {
+            "fator": "area_relativa",
+            "valor": 0.0036,
+            "pontos": 2.3,
+            "explicacao": "região ocupa 0.36% da imagem (25 pts a partir de 4%)"
+          },
+          {
+            "fator": "crescimento_temporal",
+            "valor": null,
+            "pontos": 0.0,
+            "explicacao": "sem inspeção anterior comparável desta região"
+          },
+          {
+            "fator": "categoria_candidata",
+            "valor": "fissura",
+            "pontos": 8.0,
+            "explicacao": "categoria candidata 'fissura' (confiança heurística alta)"
+          },
+          {
+            "fator": "qualidade_evidencia",
+            "valor": 0.962,
+            "pontos": null,
+            "explicacao": "multiplicador 0.98 sobre 15.6 pontos brutos"
+          }
+        ],
+        "notes": [
+          "Sem histórico: crescimento não avaliado."
+        ],
+        "is_new": false,
+        "has_history": false,
+        "summary": "Severidade preliminar BAIXA (15/100). Principais fatores: categoria candidata 'fissura' (confiança heurística alta) (+8); índice de pico 1.30 (1,00 = limiar calibrado em referências normais) (+5); região ocupa 0.36% da imagem (25 pts a partir de 4%) (+2)."
+      }
+    }
+  ],
+  "ingestion": [
+    {
+      "service": "ai_worker",
+      "last_seen": "2026-11-19T14:05:15.605561Z",
+      "alive": true,
+      "stats": {
+        "processed": 0,
+        "model_version": "knn-c27b1d1dd1",
+        "last_export": {
+          "exported_rows": 0,
+          "last_id": 573,
+          "seconds": 0.001,
+          "exported_findings": 8
+        }
+      }
+    },
+    {
+      "service": "mqtt_ingestor",
+      "last_seen": "2026-11-19T14:05:16.371544Z",
+      "alive": true,
+      "stats": {
+        "received": 102157,
+        "inserted": 100200,
+        "duplicates": 1957,
+        "invalid": 0,
+        "batches": 103,
+        "captures": 0,
+        "jobs_enqueued": 0,
+        "db_retries": 0,
+        "connected": true,
+        "last_latency_ms_p50": 4153890783.7,
+        "started_at": "2026-11-19T14:04:45.650534+00:00"
+      }
+    }
+  ],
+  "lake": {
+    "parquet_files": 54,
+    "bytes": 6182211,
+    "telemetry_last_id": 102287,
+    "exports": 4
+  },
+  "anomalies_by_facade": [
+    {
+      "facade_name": "Fachada Leste",
+      "region_code": "L-01",
+      "data_inspecao": "2026-11-10",
+      "achados": 1,
+      "area_total_pct": 2.56,
+      "severidade_media": 75.0,
+      "achados_alta_ou_critica": 1
+    },
+    {
+      "facade_name": "Fachada Leste",
+      "region_code": "L-02",
+      "data_inspecao": "2026-05-12",
+      "achados": 2,
+      "area_total_pct": 0.99,
+      "severidade_media": 16.8,
+      "achados_alta_ou_critica": 0
+    },
+    {
+      "facade_name": "Fachada Leste",
+      "region_code": "L-02",
+      "data_inspecao": "2026-11-10",
+      "achados": 2,
+      "area_total_pct": 1.05,
+      "severidade_media": 25.5,
+      "achados_alta_ou_critica": 0
+    },
+    {
+      "facade_name": "Fachada Norte",
+      "region_code": "N-01",
+      "data_inspecao": "2026-05-12",
+      "achados": 1,
+      "area_total_pct": 1.79,
+      "severidade_media": 34.8,
+      "achados_alta_ou_critica": 0
+    },
+    {
+      "facade_name": "Fachada Norte",
+      "region_code": "N-01",
+      "data_inspecao": "2026-11-10",
+      "achados": 2,
+      "area_total_pct": 4.29,
+      "severidade_media": 49.5,
+      "achados_alta_ou_critica": 1
+    }
+  ]
+}

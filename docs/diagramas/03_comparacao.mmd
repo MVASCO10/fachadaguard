@@ -1,0 +1,9 @@
+flowchart LR
+  A{"Mesma região<br/>de fachada?"} -->|"não"| R1["Recusa (422)<br/>ou force=true<br/>com aviso"]
+  A -->|"sim"| O["ORB + RANSAC<br/>inliers · reprojeção<br/>plausibilidade · sobreposição"]
+  O -->|"reprovado"| E["ECC afim<br/>(fallback)"]
+  E -->|"reprovado"| R2["alignment_failed<br/>sem mapa de mudança<br/>recapturar"]
+  O -->|"aprovado"| N["Warp + casamento<br/>de histograma"]
+  E -->|"aprovado"| N
+  N --> S["1 − SSIM<br/>na área válida"]
+  S --> G["Mudança e crescimento<br/>por achado → severidade"]

@@ -1,0 +1,81 @@
+{
+  "tag": "20261119022013",
+  "generated_at": "2026-11-19T02:20:37.633600+00:00",
+  "synthetic": true,
+  "config": {
+    "events": 100000,
+    "drones": 10,
+    "duplicate_rate": 0.02,
+    "seed": 7,
+    "qos": 1
+  },
+  "publish": {
+    "unique_events": 100000,
+    "duplicates_published": 1957,
+    "drones": 10,
+    "tag": "20261119022013",
+    "publish_seconds": 12.771,
+    "broker_ack_seconds": 13.2,
+    "publish_rate_eps": 7724.0,
+    "acked": 101957,
+    "simulated": true
+  },
+  "ingestion": {
+    "persisted_unique": 100000,
+    "complete": true,
+    "seconds_until_last_persisted": 16.811,
+    "seconds_publish_phase": 13.203,
+    "throughput_eps": 5948.5,
+    "duplicates_discarded_by_ingestor": 1957,
+    "invalid_messages": 0,
+    "batches": 104,
+    "db_retries": 0
+  },
+  "latency_probe_ms": {
+    "n": 200,
+    "p50": 1433.8,
+    "p95": 2648.6,
+    "max": 2829.6,
+    "note": "captured_at → received_at (relógios do mesmo host Docker), sob carga simultânea"
+  },
+  "lake_export": {
+    "exported_rows": 100200,
+    "last_id": 102371,
+    "seconds": 0.747,
+    "exported_findings": 8
+  },
+  "lake": {
+    "parquet_files": 54,
+    "bytes": 6181717,
+    "telemetry_last_id": 102371,
+    "exports": 4
+  },
+  "duckdb_queries": {
+    "telemetry_by_mission": {
+      "rows": 53,
+      "seconds": 0.024
+    },
+    "telemetry_distribution": {
+      "rows": 1791,
+      "seconds": 0.01
+    },
+    "events_per_day": {
+      "rows": 33,
+      "seconds": 0.01
+    },
+    "anomalies_by_facade": {
+      "rows": 5,
+      "seconds": 0.004
+    }
+  },
+  "lake_check": {
+    "load_missions": 50,
+    "load_events_in_lake": 100000
+  },
+  "environment": {
+    "python": "3.12.16",
+    "platform": "Linux-7.0.14-linuxkit-aarch64-with-glibc2.41",
+    "cpu_count": 10,
+    "host_note": "executado em contêineres Docker locais"
+  }
+}

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relatório preliminar — {{ mission.name }}</title>
+<style>
+  :root { --ink:#1d2430; --muted:#5b6575; --line:#d9dee6; --accent:#1f5fa8; --bg:#ffffff;
+          --crit:#a1161b; --alta:#d4520f; --media:#b08900; --baixa:#3d7a3d; }
+  * { box-sizing: border-box; }
+  body { font: 14px/1.5 "Segoe UI", system-ui, -apple-system, sans-serif; color: var(--ink); background: var(--bg);
+         margin: 0 auto; max-width: 980px; padding: 28px 20px 60px; }
+  h1 { font-size: 24px; margin: 0 0 4px; } h2 { font-size: 18px; margin: 30px 0 10px; border-bottom: 2px solid var(--accent); padding-bottom: 4px; }
+  h3 { font-size: 15px; margin: 18px 0 6px; }
+  .muted { color: var(--muted); } .small { font-size: 12px; }
+  .banner { border: 2px solid var(--crit); background: #fff4f4; padding: 10px 14px; border-radius: 6px; margin: 14px 0; }
+  .synthetic { border-color: #7a4fb0; background: #f6f1fc; }
+  table { border-collapse: collapse; width: 100%; margin: 8px 0; font-size: 13px; }
+  th, td { border: 1px solid var(--line); padding: 5px 8px; text-align: left; vertical-align: top; }
+  th { background: #f2f5f9; }
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .kpi { border: 1px solid var(--line); border-radius: 6px; padding: 10px; }
+  .kpi b { display: block; font-size: 22px; }
+  .lvl { display: inline-block; padding: 1px 8px; border-radius: 10px; color: #fff; font-size: 12px; font-weight: 600; }
+  .lvl-critica { background: var(--crit); } .lvl-alta { background: var(--alta); }
+  .lvl-media { background: var(--media); } .lvl-baixa { background: var(--baixa); }
+  .region { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; margin: 14px 0; page-break-inside: avoid; }
+  .imgs { display: flex; gap: 12px; flex-wrap: wrap; } .imgs figure { margin: 0; } .imgs img { max-width: 440px; width: 100%; border: 1px solid var(--line); }
+  figcaption { font-size: 12px; color: var(--muted); }
+  .finding { display: grid; grid-template-columns: 150px 1fr; gap: 12px; border-top: 1px dashed var(--line); padding-top: 8px; margin-top: 8px; }
+  .finding img { max-width: 150px; border: 1px solid var(--line); }
+  footer { margin-top: 40px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 10px; }
+  @media print { body { padding: 0; } .region { break-inside: avoid; } }
+</style>
+</head>
+<body>
+<p class="muted small">FachadaGuard v{{ version }} · relatório gerado em {{ generated_at|dt }}</p>
+<h1>Relatório preliminar de inspeção — {{ mission.name }}</h1>
+<p class="muted">{{ building.name }} · drone <code>{{ mission.drone_id }}</code> · missão <code>{{ mission.id }}</code></p>
+
+<div class="banner"><b>Aviso.</b> {{ disclaimer }} Escores são índices relativos de anomalia (1,00 = limiar calibrado em
+referências normais), não probabilidades. Categorias são <i>candidatas</i> geradas por heurística.</div>
+{% if synthetic %}<div class="banner synthetic"><b>Dados sintéticos.</b> Edifício, voo e imagens desta missão foram
+simulados para demonstração técnica; não representam uma edificação real.</div>{% endif %}
+
+<h2>1. Resumo</h2>
+<p>{{ summary }}</p>
+<p class="muted small">Fonte do resumo: {{ summary_source }}.</p>
+<div class="kpis">
+  <div class="kpi"><b>{{ coverage.regions_inspected }}/{{ coverage.regions_total }}</b>regiões inspecionadas</div>
+  <div class="kpi"><b>{{ n_findings }}</b>regiões candidatas</div>
+  <div class="kpi"><b>{{ levels.critica + levels.alta }}</b>alta ou crítica</div>
+  <div class="kpi"><b>{{ alerts|length }}</b>alertas abertos para revisão</div>
+</div>
+
+<h2>2. Identificação e telemetria</h2>
+<table>
+  <tr><th>Edifício</th><td>{{ building.name }}{% if building.address %} — {{ building.address }}{% endif %}</td></tr>
+  <tr><th>Missão</th><td>{{ mission.name }} ({{ mission.status }}){% if mission.is_simulated %} — <b>simulada</b>{% endif %}</td></tr>
+  <tr><th>Período do voo</th><td>{{ telemetry.start|dt if telemetry.events else "—" }} → {{ telemetry.end|dt if telemetry.events else "—" }}
+      {% if telemetry.duration_min is not none %}({{ telemetry.duration_min }} min){% endif %}</td></tr>
+  <tr><th>Eventos de telemetria</th><td>{{ telemetry.events }}</td></tr>
+  {% if telemetry.events %}
+  <tr><th>Bateria</th><td>máx. {{ telemetry.battery_start_max }}% · mín. {{ telemetry.battery_min }}%</td></tr>
+  <tr><th>Qualidade do enlace</th><td>mín. {{ telemetry.signal_min }} · média {{ telemetry.signal_avg }} (escala 0–100)</td></tr>
+  <tr><th>Altitude</th><td>{{ telemetry.altitude_min }} – {{ telemetry.altitude_max }} m</td></tr>
+  <tr><th>Envelope de coordenadas</th><td>{{ telemetry.bbox|join(", ") }}</td></tr>
+  {% endif %}
+  <tr><th>Modelo(s) de IA</th><td>{{ model_versions|join(", ") or "—" }}</td></tr>
+</table>
+
+<h2>3. Achados por severidade e categoria</h2>
+<table>
+  <tr><th>Severidade preliminar</th>{% for k, v in levels.items() %}<td><span class="lvl lvl-{{ k }}">{{ k }}</span> {{ v }}</td>{% endfor %}</tr>
+  <tr><th>Categoria candidata</th>{% for k, v in categories.items() %}<td>{{ category_label[k] }}: {{ v }}</td>{% endfor %}</tr>
+  <tr><th>Revisão humana</th>{% for k, v in reviews.items() %}<td>{{ review_label[k] }}: {{ v }}</td>{% endfor %}</tr>
+</table>
+
+<h2>4. Regiões inspecionadas</h2>
+{% for it in items %}
+<section class="region">
+  <h3>{{ it.facade.name }} · região {{ it.region.code }} — {{ it.region.description or "" }}</h3>
+  <p class="small muted">Inspeção <code>{{ it.inspection.id }}</code> em {{ it.inspection.inspected_at|dt }}
+  {% if it.run %}· índice máximo {{ "%.2f"|format(it.run.image_score) }} · área anômala {{ it.run.anomalous_area_ratio|pct(2) }}
+  · qualidade da evidência {{ "%.2f"|format(it.run.quality.quality_score) }}{% else %}· <b>análise não concluída</b>{% endif %}</p>
+  <div class="imgs">
+    {% if it.overlay %}<figure><img src="{{ it.overlay }}" alt="mapa de calor"><figcaption>Mapa de calor do índice de anomalia (contorno = acima do limiar)</figcaption></figure>{% endif %}
+    {% if it.comparison_overlay %}<figure><img src="{{ it.comparison_overlay }}" alt="mudança"><figcaption>Mudança em relação à inspeção anterior (1 − SSIM)</figcaption></figure>{% endif %}
+  </div>
+  {% if it.comparison %}
+  <p class="small"><b>Comparação temporal:</b> {{ it.comparison.status }} · intervalo {{ it.comparison.interval_days }} dias
+  · alinhamento {{ it.comparison.alignment.method }}{% if it.comparison.ssim is not none %} · SSIM {{ "%.3f"|format(it.comparison.ssim) }}
+  · área alterada {{ it.comparison.changed_area_ratio|pct(2) }}{% endif %}
+  · área anômala {{ it.comparison.anomalous_area_before|pct(2) }} → {{ it.comparison.anomalous_area_after|pct(2) }}
+  {% for w in it.comparison.warnings %}<br>⚠ {{ w }}{% endfor %}</p>
+  {% else %}<p class="small muted">Sem inspeção anterior analisada desta região.</p>{% endif %}
+  {% for fx in it.findings %}{% set f = fx.f %}
+  <div class="finding">
+    <div>{% if fx.crop %}<img src="{{ fx.crop }}" alt="recorte">{% endif %}</div>
+    <div><span class="lvl lvl-{{ f.severity_level }}">{{ f.severity_level }}</span>
+      <b>{{ fx.label }}</b> · confiança heurística {{ f.category_confidence }} · {{ f.severity_points }} pts
+      · revisão: <b>{{ review_label[f.review_status] }}</b><br>
+      <span class="small">{{ f.severity_explanation.summary }}</span><br>
+      <span class="small muted">{{ f.category_explanation }}</span><br>
+      <span class="small muted">Achado <code>{{ f.id }}</code> · caixa ({{ f.bbox_x }}, {{ f.bbox_y }}, {{ f.bbox_w }}×{{ f.bbox_h }}) px
+      · área {{ f.area_ratio|pct(2) }} · índice de pico {{ "%.2f"|format(f.peak_score) }}
+      {% for n in f.severity_explanation.notes %}<br>• {{ n }}{% endfor %}</span>
+    </div>
+  </div>
+  {% else %}<p class="small">Nenhuma região acima do limiar.</p>{% endfor %}
+</section>
+{% endfor %}
+
+<h2>5. Limitações</h2>
+<ul>
+  <li>Detecção baseada em aparência 2D: não mede profundidade, aderência, umidade real nem causas.</li>
+  <li>Iluminação, sombras, reflexos, desfoque e mudança de ponto de vista podem gerar falsos positivos e negativos.</li>
+  <li>Categorias são propostas por regras heurísticas ajustadas em dados sintéticos; manchas difusas e sombras se confundem.</li>
+  <li>O limiar foi calibrado com referências sintéticas; para uso real é necessário recalibrar com imagens da própria fachada.</li>
+  <li>A severidade é uma regra de priorização transparente, não uma avaliação de risco estrutural.</li>
+</ul>
+
+<h2>6. Recomendações de revisão humana</h2>
+<ol>
+  <li>Revisar primeiro os achados críticos e altos, conferindo a imagem original e o recorte.</li>
+  <li>Registrar a decisão (confirmado, descartado ou encaminhado para inspeção técnica) com observação.</li>
+  <li>Encaminhar achados confirmados a profissional habilitado para vistoria presencial ou técnica complementar.</li>
+  <li>Recapturar regiões com evidência de baixa qualidade ou alinhamento recusado.</li>
+  <li>Nenhuma intervenção, interdição ou liberação deve ser decidida apenas com base neste relatório.</li>
+</ol>
+
+<footer>Evidências: cada achado referencia seu identificador, a execução de modelo e a captura de origem na API
+(<code>/api/v1/findings/&lt;id&gt;</code>). {{ disclaimer }}</footer>
+</body>
+</html>

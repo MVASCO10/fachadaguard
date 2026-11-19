@@ -1,0 +1,7 @@
+# Drone/simulador: só publica nos tópicos v1.
+user fg_drone
+topic write fachadaguard/v1/#
+
+# Ingestor: só lê os tópicos v1.
+user fg_ingestor
+topic read fachadaguard/v1/#

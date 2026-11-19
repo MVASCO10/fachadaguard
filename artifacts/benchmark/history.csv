@@ -1,0 +1,2 @@
+tag,events,persisted,ingest_s,throughput_eps,dups_published,dups_discarded,lat_p50_ms,lat_p95_ms,export_s,lake_mb
+20261119140451,100000,100000,17.296,5781.6,1957,1957,1655.9,2869.6,0.764,6.18
